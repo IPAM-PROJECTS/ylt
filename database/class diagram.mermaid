@@ -1,0 +1,132 @@
+classDiagram
+  class Admin {
+    +admin_id : int
+    +username : string
+    +admin_firstname : string
+    +admin_lastname : string
+    +admin_email : string
+    +admin_password : string
+    +admin_contact : string
+    +date : date
+    +manageUserAccounts()
+    +approveRejectRegistrations()
+    +viewManageBookings()
+  }
+
+  class Tourist {
+    +tourist_id : int
+    +tourist_username : string
+    +tourist_firstname : string
+    +tourist_lastname : string
+    +tourist_email : string
+    +tourist_password : string
+    +profile_image : text
+    +tourist_contact : string
+    +tourist_address : string
+    +tourist_status : string
+    +date : date
+    +browseViewPackages()
+    +bookPackage()
+    +modifyCancelBooking()
+  }
+
+  class Agency {
+    +agency_id : int
+    +agency_name : string
+    +owner_firstname : string
+    +owner_lastname : string
+    +agency_email : string
+    +agency_password : string
+    +logo_image : text
+    +cover_image : text
+    +agency_contact : string
+    +agency_address : string
+    +agency_status : string
+    +date : date
+    +addManageStaffAccounts()
+    +modifyOfferingsPackages()
+    +viewPerformance()
+  }
+
+  class AgencyEmployee {
+    +employee_id : int
+    +employee_firstname : string
+    +employee_lastname : string
+    +employee_email : string
+    +employee_password : string
+    +employee_contact : string
+    +employee_address : string
+    +role : string
+    +date : date
+  }
+
+  class Package {
+    +package_id : int
+    +package_name : string
+    +location : string
+    +district : string
+    +place_details : text
+    +place_images : text
+    +num_days : int
+    +num_nights : int
+    +budget_price : int
+    +comfort_price : int
+    +lux_price : int
+    +budget_details : string
+    +comfort_details : string
+    +lux_details : string
+    +booking_percentage : int
+    +min_people : int
+    +includes : text
+    +excludes : text
+    +optional : text
+    +itinerary : text
+    +package_status : string
+    +package_date : date
+    +addBooking()
+    +modifyBooking()
+  }
+
+  class PackageDate {
+    +date_id : int
+    +last_date : date
+    +travel_date : date
+    +status : string
+    +date : date
+  }
+
+  class Booking {
+    +booking_id : int
+    +persons : int
+    +travel_style : string
+    +enquiry_msg : text
+    +booking_status : string
+    +date : date
+  }
+
+  class Comment {
+    +comment_id : int
+    +content : text
+    +comment_status : string
+    +comment_date : date
+  }
+
+  class Review {
+    +review_id : int
+    +rating : int
+    +comment : text
+    +review_status : string
+    +review_date : date
+  }
+
+  Admin "1" --> "0..*" Agency
+  Tourist "1" --> "0..*" Booking
+  Agency "1" --> "0..*" AgencyEmployee
+  Agency "1" --> "0..*" Package
+  AgencyEmployee "1" --> "0..*" Booking
+  Tourist "1" --> "0..*" Comment
+  Tourist "1" --> "0..*" Review
+  Package "1" --> "0..*" PackageDate
+  Package "1" --> "0..*" Booking
+  Package "1" --> "0..*" Comment
+  Package "1" --> "0..*" Review

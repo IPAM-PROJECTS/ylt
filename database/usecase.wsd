@@ -1,0 +1,38 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor Admin as A
+actor Tourist as T
+actor "Agency Owner" as AO
+actor "Agency Senior Staff" as ASS
+actor "Agency Junior Staff" as AJS
+
+rectangle "System" {
+  A -- (Manage User Accounts) <<include>>
+  A -- (Approve/Reject Registrations) <<initiate>>
+  A -- (View/Manage Bookings) <<exclude>>
+
+  T -- (Browse/View Packages) <<initiate>>
+  T -- (Book Package) <<extend>>
+  T -- (Modify/Cancel Booking) <<extend>>
+
+  AO -- (Add/Manage Staff Accounts) <<initiate>>
+  AO -- (Modify Offerings/Packages) <<initiate>>
+  AO -- (View Performance) <<exclude>>
+
+  ASS -- (Manage Packages) <<initiate>>
+  ASS -- (Review/Manage Bookings) <<include>>
+  ASS -- (Access Reviews/Feedback) <<include>>
+
+  AJS -- (View Details/Offerings) <<initiate>>
+  AJS -- (View Bookings) <<initiate>>
+
+  (Manage User Accounts) -- (Approve/Reject Registrations) <<include>>
+  (Approve/Reject Registrations) -- (View/Manage Bookings) <<extend>>
+  (Modify/Cancel Booking) -- (View/Manage Bookings) <<include>>
+  (Browse/View Packages) -- (Book Package) <<extend>>
+  (View/Manage Bookings) -- (Review/Manage Bookings) <<include>>
+  (Review/Manage Bookings) -- (Access Reviews/Feedback) <<extend>>
+}
+@enduml

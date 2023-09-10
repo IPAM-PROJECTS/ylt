@@ -1,0 +1,32 @@
+sequenceDiagram
+  autonumber
+  participant A as Admin
+  participant AO as Agency Owner
+  participant ASS as Agency Senior Staff
+  participant AJS as Agency Junior Staff
+  participant T as Tourist
+  participant System
+
+  A ->> System: Login
+  A ->> System: Manage User Accounts
+  A ->> System: Approve/Reject Registrations
+  A ->> System: View/Manage Bookings
+
+  AO ->> System: Login
+  AO ->> System: Add/Manage Staff Accounts
+  AO ->> System: Modify Offerings/Packages
+  AO ->> System: View Performance
+
+  ASS ->> System: Login
+  ASS ->> System: Manage Packages
+  ASS ->> System: Review/Manage Bookings
+  ASS ->> System: Access Reviews/Feedback
+
+  AJS ->> System: Login
+  AJS ->> System: View Details/Offerings
+  AJS ->> System: View Bookings
+
+  T ->> System: Login
+  T ->> System: Browse/View Packages
+  T ->> System: Book Package
+  T ->> System: Modify/Cancel Booking
