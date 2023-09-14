@@ -198,8 +198,8 @@
             <select name="agency_role" id="" class="form-control custom-select">
                 <option value="">Please Select</option>
                 <option value="owner">Owner</option>
-                <option value="manager">Manager</option>
-                <option value="staff">Staff</option>
+                <option value="Senior Staff">Senior Staff</option>
+                <option value="Junior Staff">Junior Staff</option>
             </select>
         </div>
         <div class="form-group p-2">

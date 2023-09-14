@@ -61,7 +61,7 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Usename</th>
+                <th>User Name</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>

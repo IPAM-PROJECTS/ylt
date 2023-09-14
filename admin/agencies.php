@@ -47,7 +47,7 @@
         <footer class="py-3 bg-light mt-auto">
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Yeama Leone Tours &copy; 2023</div>
+                    <div class=""> <center> Yeama Leone Tours &copy; 2023 </center></div>
                 </div>
             </div>
         </footer>

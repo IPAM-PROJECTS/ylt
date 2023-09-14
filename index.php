@@ -217,24 +217,27 @@ function copyContact() {
   </div>
 </div>
 
+
 <!-- Top Agencies according to Ratings -->
 <?php
-    // $stmt = $pdo->prepare('SELECT  agencies.agency_status from agencies inner join  (select reviews.agency_id, avg(rating) AS avg_rate FROM reviews) 
-    //  on agencies.agency_id = reviews.agency_id where review.review_status = : reviews.review_status GROUP BY reviews.agency_id  && reviews.agency_status = :agency_status ORDER BY avg(rating) DESC LIMIT 9');
-    // $stmt->execute([':review_status' => 'published']);
-    // $top_agencies = [];
-    // while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-    //     $top_agencies[] = $row;
-    // }
+   
     $stmt = $pdo->prepare('SELECT agency_id, avg(rating) AS avg_rate FROM reviews WHERE review_status = :review_status GROUP BY agency_id ORDER BY avg(rating) DESC LIMIT 9');
     $stmt->execute([':review_status' => 'published']);
     $top_agencies = [];
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         $top_agencies[] = $row;
     }
+
+    // $stmt = $pdo->prepare('SELECT agency_id, avg(rating) AS avg_rate FROM reviews inner join agency on agency.agency_id = review.agnecy_id
+    //  WHERE review_status = :review_status && agency_status= GROUP BY agency_id ORDER BY avg(rating) DESC LIMIT 9');
+    // $stmt->execute([':review_status' => 'published']);
+    // $top_agencies = [];
+    // while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+    //     $top_agencies[] = $row;
+    // }
 ?>
 
-<br><br><br><br><br><br>
+<br><br><br><br><br>
 <div class="container mt-5">
     <h3 class="text-center text-white pt-5">Top Agencies</h3>
     <div class="row">
@@ -247,6 +250,19 @@ function copyContact() {
           $agency = readAgency($top_agency['agency_id']);
 
     ?>
+    <?php
+   //Agency Read Query ... approved agency
+  $stmt = $pdo->prepare('SELECT * FROM agencies WHERE agency_status = :agency_status ORDER BY agency_name');
+  $stmt->execute([':agency_status' => 'approved']);
+  $agencies = [];
+  while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+    $agencies[] = $row;
+  }
+
+  if(empty($agencies)){
+    echo '<h1 class="text-center pt-4">No Agency Found</h1>';
+  }else{
+?>
 
       <div class="col-sm-4" data-aos="fade-up">
         <div class="card mb-5 mt-2 effect" data-tilt>
@@ -297,10 +313,12 @@ function copyContact() {
       <?php
         }
       }
+      }
       ?>
 
     </div>
 </div>
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js" integrity="sha512-u1L7Dp3BKUP3gijgSRoMTNxmDl/5o+XOHupwwa7jsI1rMzHrllSLKsGOfqjYl8vrEG+8ghnRPNA/SCltmJCZpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
